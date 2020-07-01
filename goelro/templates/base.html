@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Домашняя страница{% endblock %}</title>
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+</head>
+<body onscroll = scrollFunction()>
+<div class="header">
+    <!--<img src="{% static 'images/stamp1967.jpg' %}" alt="">-->
+    <h1>100 лет ГОЭЛРО</h1>
+</div>
+
+<nav>
+    {% block nav %}{% endblock %}
+</nav>
+
+<div class="row">
+    <div class="col-30 info">
+        {% block info %}{% endblock %}
+    </div>
+    <div class="col-70 content">
+        {% block content %}{% endblock %}
+    </div>
+    <button onclick="topFunction()" id="upBtn" title="Go to top">Top</button>
+</div>
+
+<div class="footer">
+    <p>© Авторский коллектив: {{authors_names}} 2020.</p>
+    <p>Все материалы можно использовать с ссылкой на первоисточник.</p>
+</div>
+
+</body>
+</html>

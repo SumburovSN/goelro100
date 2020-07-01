@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %} Полезные ссылки {% endblock %}
+
+{% block nav %}
+    {% for item in nav %}
+        {% if forloop.counter == 5 %}
+    <a href={{ item.href }} class="active">{{ item.name }}</a>
+        {% else %}
+    <a href={{ item.href }}>{{ item.name }}</a>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block info %}
+<ul>
+    {% for title in titles %}
+        <li><a href="/article/{{forloop.counter}}">{{title}}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block content %}
+
+<p><a href="https://ru.wikipedia.org/wiki/%D0%93%D0%9E%D0%AD%D0%9B%D0%A0%D0%9E#:~:text=%D0%93%D0%9E%D0%AD%D0%9B%D0%A0%D0%9E%CC%81%20(%D1%81%D0%BE%D0%BA%D1%80.,%D0%98.">Википедия</a></p>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GOELRO</title>
+    <link rel="stylesheet" href="static/styles/style.css">
+</head>
+<body>
+    <h1>Первая статья про ГОЭЛРО</h1>
+    <p> Первый абзац</p>
+    <p> Второй абзац</p>
+    <p> Слежующий абзац</p>
+
+    <form action="form-handler/" method="post">{% csrf_token %}
+        Login <input type="text">
+        Password <input type="password">
+        <input type="submit" value="Submit">
+    </form>
+
+</body>
+</html>

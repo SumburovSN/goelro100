@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %} Раздел 1 {% endblock %}
+
+{% block nav %}
+    {% for item in nav %}
+        {% if forloop.counter == 2 %}
+    <a href={{ item.href }} class="active">{{ item.name }}</a>
+        {% else %}
+    <a href={{ item.href }}>{{ item.name }}</a>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block info %}
+<ul>
+    {% for title in titles %}
+        <li><a href="/article/{{forloop.counter}}">{{title}}</a></li>
+        {% if forloop.counter == 1 %}
+        <ul>
+            <li><a href="#1">Введение</a></li>
+            <li><a href="#2">Основная часть</a></li>
+            <li><a href="#3">Заключение</a></li>
+            <li><a href="#4">Авторы</a></li>
+            <li><a href="#5">Ссылки</a></li>
+        </ul>
+        {% endif %}
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block content %}
+
+<h1>{{title}}</h1>
+
+<h2 id="1">Введение</h2>
+{% lorem 10 p %}
+<h2 id="2">Основная часть</h2>
+{% lorem 50 p %}
+<h2 id="3">Заключение</h2>
+{% lorem 5 p %}
+<h2 id="4"></h2>
+{% for author in authorList %}
+    {% for item in author %}
+<p class="authors">{{ item }}</p>
+    {% endfor %}
+{% endfor %}
+<h2 id="5">Ссылки</h2>
+{% lorem 3 p %}
+
+<a href="/article/2">Следуюшая статья</a>
+{% endblock %}

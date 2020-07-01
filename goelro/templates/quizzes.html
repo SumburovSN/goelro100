@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %} Перечень тестов {% endblock %}
+
+{% block nav %}
+    {% for item in nav %}
+        {% if forloop.counter == 4 %}
+    <a href={{ item.href }} class="active">{{ item.name }}</a>
+        {% else %}
+    <a href={{ item.href }}>{{ item.name }}</a>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block info %}
+<ul>
+    {% for title in titles %}
+        <li><a href="/article/{{forloop.counter}}">{{title}}</a>
+        </li>
+    {% endfor %}
+
+</ul>
+
+{% endblock %}
+
+{% block content %}
+
+<h1>Перечень тестов</h1>
+{% for quiz in quizzes %}
+    <a href="/quiz/{{forloop.counter}}">Tecт {{forloop.counter}}</a><br>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Podcast {% endblock %}
+
+{% block nav %}
+    {% for item in nav %}
+        {% if forloop.counter == 3 %}
+    <a href={{ item.href }} class="active">{{ item.name }}</a>
+        {% else %}
+    <a href={{ item.href }}>{{ item.name }}</a>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block info %}
+<ul>
+    {% for title in titles %}
+        <li><a href="/article/{{forloop.counter}}">{{title}}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block content %}
+
+
+<audio id = "audioPlayer" controls>
+Your browser does not support the audio element.
+</audio>
+{% for file in files %}
+    <p onclick="changeAudio('{{MEDIA_URL}}{{ file }}')">{{file}}</p>
+{% endfor %}
+
+
+{% endblock %}

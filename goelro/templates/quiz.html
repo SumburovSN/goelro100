@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %} Тест по Разделу {{ section }} {% endblock %}
+
+{% block nav %}
+    {% for item in nav %}
+        {% if forloop.counter == 4 %}
+    <a href={{ item.href }} class="active">{{ item.name }}</a>
+        {% else %}
+    <a href={{ item.href }}>{{ item.name }}</a>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block info %}
+<ul>
+    {% for item in quiz %}
+    <li id="question{{forloop.counter}}">Вопрос {{forloop.counter}}</li>
+    {% endfor %}
+
+</ul>
+{% endblock %}
+
+{% block content %}
+
+<h1>Тест по Разделу {{ section }}</h1>
+<form action="/quiz/{{ section }}" method="post">
+    {% csrf_token %}
+    {% for item in quiz %}
+    <p>Вопрос {{forloop.counter}}. {{ item.question }}</p>
+            {% for option in item.options %}
+
+        {% if Verified %}
+    <label {% if forloop.counter == item.chosen and item.check %} class="right"
+           {% elif forloop.counter == item.chosen and not item.check %} class="wrong"
+           {% endif %}>
+        <input type="radio" name={{ item.name }}
+               {% if item.check %} class="right"
+               {% else %} class="wrong"
+               {% endif %}
+               {% if forloop.counter == item.chosen %} checked {% endif %}
+               disabled>
+        {% else %}
+    <label  onchange="answered('{{ item.name }}')">
+        <input type="radio" name={{ item.name }} value={{forloop.counter}}>
+        {% endif %}
+        {{ option }}
+    </label><br>
+        {% endfor %}
+    {% endfor %}
+    {% if not Verified %}
+     <input type="submit" value="Проверить" />
+    {% endif %}
+</form>
+    {% if Verified %}
+    <p>Ваш результат: {{ ratio }}% </p>
+    <a href="/quiz/{{ section }}">Еще раз</a><br>
+    <a href="/quizzes">Другой тест</a>
+    {% endif %}
+{% endblock %}

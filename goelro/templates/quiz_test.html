@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %} Тест по Разделу 1 {% endblock %}
+
+{% block nav %}
+    <a href="/">Главная</a>
+    <a href="/article/1">Статьи</a>
+    <a href="/persons">Персоналии</a>
+    <a href="/audio">Аудиофайлы (Подкасты)</a>
+    <a href="/quizzes" class="active">Тесты</a>
+    <a href="/authors">Об авторах</a>
+{% endblock %}
+
+{% block info %}
+<ul>
+    <li>Вопрос 1</li>
+    <li>Вопрос 2</li>
+    <li>Вопрос 3</li>
+    <li>Вопрос 4</li>
+</ul>
+{% endblock %}
+
+{% block content %}
+
+<h1>Тест по Разделу 1</h1>
+<form action="/quizzes" method="post">
+    {% csrf_token %}
+    {{questionnaire}}
+    <input type="submit" value="Submit" />
+</form>
+<hr>
+
+{% endblock %}
